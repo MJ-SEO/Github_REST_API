@@ -18,7 +18,7 @@ post '/payload' do
 
 	repo_name = push["repository"]["name"]
 	p repo_name
-	cmd = "cd " + repo_name + "; timeout 1m ./fuzz_test.sh ; gh issue create -l bug -t 'fuzzing commit#" + commit + "' -b 'BUG FOUND'"
+	cmd = "cd " + repo_name + "/ci_fuzzing " + "; timeout 1m ./fuzz_test.sh ; gh issue create -l bug -t 'fuzzing commit#" + commit + "' -b 'BUG FOUND'"
 	p cmd
 
 	Git.clone(github_url, repo_name)
